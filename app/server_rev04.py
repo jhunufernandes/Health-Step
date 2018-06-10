@@ -56,11 +56,14 @@ def cloud_format(cloud_data):
         data = data.split(",")
         database.append(data)
         file_database.close()
+
     for line in range(len(database)):
         cloud_data.append({})
-        for element in range(len(database[line])):
+
+    for line in range(len(database)):
+        for element in range(len(database[0])):
             chave = str(database[0][element])
-            cloud_data[line][element][chave] = str(database[line][element])
+            cloud_data[line][chave] = str(database[line][element])
     del(cloud_data[0])
     return cloud_data
 
@@ -70,13 +73,15 @@ firebase = pyrebase.initialize_app(config)
 cloud_data = []
 app = Flask(__name__)
 
+auth = firebase.auth()
 user = auth.sign_in_with_email_and_password('jhunu.fernandes@gmail.com',123456)
-db.firebase.database()
+db = firebase.database()
 
-def firebase_update():
+def firebase_update(cloud_data):
     db = firebase.database()
     cloud_data = cloud_format(cloud_data)
-    for element in database:
+    for element in cloud_data:
+        ID = element['ID']
         db.child("Users").child(ID).set(element,user['idToken'])
 
 @app.route('/')
@@ -131,7 +136,7 @@ def data_add():
         file.close()
         call(["./step-health", "-a", "update.txt"])
         # return render_template('about.html')
-        firebase_update()
+        firebase_update(cloud_data)
         return render_template('home.html')
 
 if __name__ == '__main__':
