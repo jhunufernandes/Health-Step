@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  <form action = "http://localhost:5000/data_add" method = "POST">
+    ID card: <input type="text" name="id0"><br>
+    Prioridade: <input type="text" name="id1"><br>
+    Nome: <input type="text" name="id2"><br>
+    RG: <input type="text" name="id3"><br>
+    CPF: <input type="text" name="id4"><br>
+    Alergia: <input type="text" name="id5"><br>
+    Doenças crônicas: <input type="text" name="id6"><br>
+    Medicamentos controlado: <input type="text" name="id7"><br>
+    Tipo sanguineo: <input type="text" name="id8"><br>
+    Histórico médico: <input type="text" name="id9"><br>
+    Convênio: <input type="text" name="id10"><br>
+    Contato de emergência: <input type="text" name="id11"><br>
+    <input type="submit" value="Enviar"><br>
+  </form>
+{% endblock %}
