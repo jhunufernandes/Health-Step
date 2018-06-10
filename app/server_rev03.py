@@ -39,7 +39,7 @@ def query_auth(post):
     return 0
 
 
-about_text = ""
+about_text = "oi"
 
 app = Flask(__name__)
 
@@ -51,20 +51,10 @@ def home():
 def about():
     return render_template('about.html', about = about_text)
 
-# @app.route('/notfound')
-# def notfound():
-#     return render_template('notfound.html')
-
 @app.route('/result_data')
 def result_data():
     return render_template('result_data.html')
 
-# @app.route('/result_public')
-# def result_public():
-#     if request.method == 'POST':
-        # info_request = request.form.get('id')
-        # info = query_database(str(info_request))
-        # return render_template("result_public.html", nome = info[2], alergia = info[5], doenca = info[6], sangue = info[8], contato = info[11])
 
 @app.route('/auth', methods=['GET', 'POST'])
 def auth():
