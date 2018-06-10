@@ -64,7 +64,6 @@ def cloud_format(cloud_data):
         for element in range(len(database[0])):
             chave = str(database[0][element])
             cloud_data[line][chave] = str(database[line][element])
-    del(cloud_data[0])
     return cloud_data
 
 about_text = "oi"
@@ -80,6 +79,7 @@ db = firebase.database()
 def firebase_update(cloud_data):
     db = firebase.database()
     cloud_data = cloud_format(cloud_data)
+    print cloud_data
     for element in cloud_data:
         ID = element['ID']
         db.child("Users").child(ID).set(element,user['idToken'])
