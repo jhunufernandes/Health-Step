@@ -4,7 +4,7 @@
 from flask import Flask, render_template, request
 from subprocess import call
 import os
-# import Pyrebase
+import pyrebase
 
 config = {
     "apiKey": "AIzaSyDSsHJRtdLaiVn-7gQdGrqFIS4INm8S8Gk",
@@ -66,11 +66,12 @@ def cloud_format(cloud_data):
 
 about_text = "oi"
 
-# firebase = pyrebase.initialize_app(config)
+firebase = pyrebase.initialize_app(config)
 cloud_data = []
 app = Flask(__name__)
 
-# user = auth.sign_with_email_and_password('jhunu,fernandes@gmail.com',123456)
+user = auth.sign_in_with_email_and_password('jhunu.fernandes@gmail.com',123456)
+db.firebase.database()
 
 def firebase_update():
     db = firebase.database()
